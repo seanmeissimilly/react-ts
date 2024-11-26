@@ -1,11 +1,28 @@
-import React from 'react'
+import { useState } from "react";
+import TaskList from "./TaskList";
 
-type Props = {}
+const Todo = () => {
+  const [newTask, setNewTask] = useState<string>("");
+  const [taskList, setTaskList] = useState<string[]>([]);
 
-const Todo = (props: Props) => {
+  const handleAddTask=()=>{
+
+  }
   return (
-    <div>Todo</div>
-  )
-}
+    <div>
+      <h1>Lista de Tareas</h1>
+      <div className="">
+        <input
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Nueva Tarea"
+        />
+        <button onClick={handleAddTask}>Add Task</button>
+      </div>
+      <TaskList></TaskList>
+    </div>
+  );
+};
 
-export default Todo
+export default Todo;

@@ -5,8 +5,14 @@ const Todo = () => {
   const [newTask, setNewTask] = useState<string>("");
   const [taskList, setTaskList] = useState<string[]>([]);
 
-  const handleAddTask=()=>{
+  const handleAddTask = () => {
+    if (newTask.trim() === "") return;
+    setTaskList(previousTasks => [...previousTasks, newTask])
+    setNewTask("")
+  }
 
+  const handleDeleteTask = (index: number) => {
+    setTaskList(tasks => tasks.filter((_, i) => i !== index))
   }
   return (
     <div>
@@ -20,7 +26,7 @@ const Todo = () => {
         />
         <button onClick={handleAddTask}>Add Task</button>
       </div>
-      <TaskList></TaskList>
+      <TaskList taskList={taskList} taskDelete={handleDeleteTask}></TaskList>
     </div>
   );
 };
